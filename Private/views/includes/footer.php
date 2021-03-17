@@ -8,11 +8,11 @@
 
             <div class="col-sm-6">
                 <div id="footernav">
-                    <a class="nav-item nav-link" href="index.php">Home</a>
-                    <a class="nav-item nav-link" href="about.php">About</a>
-                    <a class="nav-item nav-link" href="register.php">Tell a Story</a>
-                    <a class="nav-item nav-link" href="stories.php">Stories</a>
-                    <a class="nav-item nav-link" href="contact.php">Contact</a>
+                    <a class="nav-item nav-link" href="<?php echo URL_ROOT; ?>pages">Home</a>
+                    <a class="nav-item nav-link" href="<?php echo URL_ROOT; ?>pages/about">About</a>
+                    <a class="nav-item nav-link" href="<?php echo URL_ROOT; ?>pages/register">Tell a Story</a>
+                    <a class="nav-item nav-link" href="<?php echo URL_ROOT; ?>pages/stories">Stories</a>
+                    <a class="nav-item nav-link" href="<?php echo URL_ROOT; ?>pages/contact">Contact</a>
                 </div>
             </div>
 

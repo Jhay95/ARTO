@@ -1,12 +1,12 @@
 <?php
-require_once("header.php");
+require_once(INC_PATH . "header.php");
 ?>
 
     <!--Header-->
     <header>
         <!--Navigation bar-->
         <?php
-        require_once("navigation.php");
+        require_once(INC_PATH . "navigation.php");
         ?>
 
         <!--Banner-->
@@ -21,11 +21,11 @@ require_once("header.php");
             <!--Featuring -->
             <section class="col-sm-9">
 
-                <div class="row">
-                    <div class="col-sm-3">
+                <div class="row section-intro">
+                    <div class="col-sm-2">
                         <h2>Contact</h2>
                     </div>
-                    <div class="col-sm-9">
+                    <div class="col-sm-10">
                         <hr>
                     </div>
                 </div>
@@ -35,11 +35,11 @@ require_once("header.php");
 
             <!--Side Bar-->
             <?php
-            require_once("sidebar.php")
+            require_once(INC_PATH . "sidebar.php")
             ?>
         </div>
     </main>
 
 <?php
-require_once("footer.php");
+require_once(INC_PATH . "footer.php");
 ?>
