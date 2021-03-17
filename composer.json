@@ -1,0 +1,13 @@
+{
+  "name": "vendor_name/ARTO",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "require": {
+
+  },
+  "require-dev": {
+    "heroku/heroku-buildpack-php": "*"
+  }
+}
+
