@@ -1,13 +1,16 @@
 {
-  "name": "vendor_name/ARTO",
-  "description": "description",
-  "minimum-stability": "stable",
-  "license": "proprietary",
-  "require": {
-
-  },
-  "require-dev": {
-    "heroku/heroku-buildpack-php": "*"
-  }
+    "name": "judith/arto",
+    "description": "A blog app for tourists",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "judith",
+            "email": "missjay2805@gmail.com"
+        }
+    ],
+    "require": {"ext-mysqli":"*"},
+  
+ "require-dev": {
+      "heroku/heroku-buildpack-php": "*"
 }
-
+}
