@@ -8,7 +8,8 @@
             "email": "missjay2805@gmail.com"
         }
     ],
-    "require": {"ext-mysqli":"*"},
+    "require": {"ext-mysqli":"*",
+        "symfony/apache-pack": "^1.0"},
   
  "require-dev": {
       "heroku/heroku-buildpack-php": "*"
