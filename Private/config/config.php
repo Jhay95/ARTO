@@ -18,7 +18,7 @@ define("DB_NAME", $cleardb_db);
 // __FILE__ returns the current path to this file
 // dirname() returns the path to the parent directory
 // URL root
-define("URL_ROOT", "http://localhost:8080/CMM007/ARTO/");
+define("URL_ROOT", "https://polar-beyond-89211.herokuapp.com/");
 define("SITE_NAME", "ARTO-Blog");
 define("PRIVATE_PATH", dirname(dirname(__FILE__)));
 define("PROJECT_PATH", dirname(PRIVATE_PATH));
