@@ -19,9 +19,6 @@ class Stories extends Controller
 
     public function __construct()
     {
-        if (!loggedin()) {
-            header('location:' . URL_ROOT . 'pages/error');
-        }
 
         $this->storyModel = $this->model('Story');
     }
@@ -29,6 +26,9 @@ class Stories extends Controller
     // Add new story to database
     public function new($id)
     {
+        if (!loggedin()) {
+            header('location:' . URL_ROOT . 'pages/error');
+        }
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Sanitize POST
@@ -80,6 +80,10 @@ class Stories extends Controller
     // Edit story to update database
     public function edit($w_id, $s_id)
     {
+        if (!loggedin()) {
+            header('location:' . URL_ROOT . 'pages/error');
+        }
+
         // Check for Post Request
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Sanitize POST
@@ -148,6 +152,10 @@ class Stories extends Controller
     // Delete story to update database
     public function delete($w_id, $s_id)
     {
+        if (!loggedin()) {
+            header('location:' . URL_ROOT . 'pages/error');
+        }
+
         // Check for Post Request
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 

@@ -80,63 +80,69 @@ require_once(INC_PATH . "header.php");
 
             <!-----Side Bar for search and filter ----->
             <div class="col-md-3">
-                <!------By Time----->
-                <div id="date">
-                    <h5>Sort by Date</h5>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio">
-                        <label class="form-check-label">
-                            Earliest
-                        </label>
+                <form action="#" method="post">
+                    <!------By Time----->
+                    <div id="date">
+                        <h5>Sort by Date</h5>
+                        <div class="form-check">
+                            <input class="form-check-input" name="date" value="Earliest" type="radio">
+                            <label for="date" class="form-check-label">
+                                Earliest
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" name="date" value="Latest" type="radio">
+                            <label for="date" class="form-check-label">
+                                Latest
+                            </label>
+                        </div>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio">
-                        <label class="form-check-label">
-                            Latest
-                        </label>
-                    </div>
-                </div>
 
-                <hr>
+                    <hr>
 
-                <!------By Location----->
-                <div id="location">
-                    <h5>Search by Location</h5>
-                    <div class="form-outline">
-                        <input type="search" class="form-control">
+                    <!------By Location----->
+                    <div id="location">
+                        <h5>Search by Location</h5>
+                        <div class="form-outline">
+                            <input type="text" name="location" class="form-control">
+                        </div>
                     </div>
-                </div>
 
-                <hr>
+                    <hr>
 
-                <!------By Category----->
-                <div id="category">
-                    <h5>Category</h5>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="War">
-                        <label class="form-check-label">
-                            War
-                        </label>
+                    <!------By Category----->
+                    <div id="category">
+                        <h5>Category</h5>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="War" name="category[]" >
+                            <label class="form-check-label" for="category">
+                                War
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Family" name="category[]">
+                            <label class="form-check-label" for="category">
+                                Family
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Tradition" name="category[]">
+                            <label class="form-check-label" for="category">
+                                Tradition
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Politics" name="category[]">
+                            <label class="form-check-label" for="category">
+                                Politics
+                            </label>
+                        </div>
+                        <div>
+                            <input class="btn" type="submit">
+                        </div>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="Family" id="flexCheckChecked">
-                        <label class="form-check-label" for="flexCheckChecked">
-                            Family
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="Tradition" id="flexCheckChecked">
-                        <label class="form-check-label" for="flexCheckChecked">
-                            Tradition
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="Politics">
-                        <label class="form-check-label">
-                            Politics
-                        </label>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </section>
