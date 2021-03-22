@@ -41,7 +41,7 @@ This restricts access to the public.
 * ##### Public
     * assets/
 
-#### To use assess this application
+#### To assess this application
 * Change **define('URL_ROOT', '')** in the config/config.php file variables
 * Change the **RewriteBase** path in the .htaccess file in the Public directory to your project root.
 * Create a database and update the Database information in the config/config.php file
