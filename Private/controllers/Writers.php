@@ -17,9 +17,6 @@ class Writers extends Controller
 
     public function __construct()
     {
-        if (!loggedin()) {
-            header('location' . URL_ROOT . 'pages');
-        }
 
         $this->writerModel = $this->model('Writer');
         $this->storyModel = $this->model('Story');
@@ -29,10 +26,10 @@ class Writers extends Controller
     // Loads the writers personal page with
     //writer's information and photo, writer's story
     public function index($id){
-        if (!loggedin()) {
-            header('location: ' . URL_ROOT . 'pages/index');
-        }
 
+        if (!loggedin()) {
+            header('location:' . URL_ROOT . 'pages/error');
+        }
         $writer = $this->writerModel->getWriterById($id);
         $stories = $this->storyModel->getShortStoriesbyWriters($id);
         $photo = $this->writerModel->findPhoto($id);
@@ -136,7 +133,6 @@ class Writers extends Controller
     // Validate login for a writer
     public function login()
     {
-
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Sanitize POST
@@ -149,6 +145,11 @@ class Writers extends Controller
                 'password_err' => '',
             ];
 
+            // Validate password
+            if (empty($data['password'])) {
+                $data['password_err'] = 'Please enter a password.';
+            }
+
             // Validate email
             if (empty($data['email'])) {
                 $data['email_err'] = 'Please enter an email';
@@ -157,11 +158,6 @@ class Writers extends Controller
                 if (!$this->writerModel->findWriterByEmail($data['email'])) {
                     $data['email_err'] = 'Invalid email';
                 }
-            }
-
-            // Validate password
-            if (empty($data['password'])) {
-                $data['password_err'] = 'Please enter a password.';
             }
 
             // Make sure errors are empty
@@ -200,6 +196,10 @@ class Writers extends Controller
 
     // Update a writer's profile
     public function edit($id) {
+
+        if (!loggedin()) {
+            header('location:' . URL_ROOT . 'pages/error');
+        }
         // Check for POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Sanitize POST data
@@ -245,7 +245,6 @@ class Writers extends Controller
 
                 // Update User
                 $updated = $this->writerModel->update($data);
-                var_dump($updated);
 
                 if ($updated) {
                     // Create Session
@@ -262,9 +261,6 @@ class Writers extends Controller
             //Get existing tailor data
             $writer = $this->writerModel->getWriterById($id);
 
-            if (!$writer->writer_id == $_SESSION['id']) {
-                header('location' . URL_ROOT . 'pages');
-            }
             // Init data
             $data = [
                 'id' => $id,
@@ -287,6 +283,9 @@ class Writers extends Controller
     // Delete a writer's profile
     public function delete($id)
     {
+        if (!loggedin()) {
+            header('location:' . URL_ROOT . 'pages/error');
+        }
         // Check for Post Request
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
@@ -297,11 +296,17 @@ class Writers extends Controller
                 $this->logout();
             } else
                 die('Something went wrong!!');
+        } else {
+            header('location:' . URL_ROOT . 'pages/error');
         }
     }
 
     // Upload Profile photo for a writer
     public function upload($id) {
+        if (!loggedin()) {
+            header('location:' . URL_ROOT . 'pages/error');
+        }
+
         // Uploads files
         if ($_SERVER['REQUEST_METHOD'] == 'POST') { // if save button on the form is clicked
 
