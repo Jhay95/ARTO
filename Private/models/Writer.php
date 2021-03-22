@@ -37,7 +37,7 @@ class Writer
     }
 
     // Login / Authenticate writer
-    public function login($email, $password): bool
+    public function login($email, $password): bool|stdClass
     {
         $this->db->query("SELECT * FROM writers WHERE writer_email = :email");
         $this->db->bind(':email', $email);
@@ -106,7 +106,7 @@ class Writer
     }
 
     // Find writer BY ID
-    public function getWriterById($id)
+    public function getWriterById($id): bool|stdClass
     {
         $this->db->query("SELECT * FROM writers WHERE writer_id = :id");
         $this->db->bind(':id', $id);
@@ -114,7 +114,7 @@ class Writer
     }
 
     // Find writers profile photo
-    public function findPhoto($id): bool
+    public function findPhoto($id): bool|stdClass
     {
         $this->db->query("SELECT * FROM photos WHERE upload_id = :id");
         $this->db->bind(':id', $id);
