@@ -32,12 +32,14 @@ class Core
     public function __construct()
     {
         $url = $this->getUrl();
-        // Look in controllers folder for controller
-        if (file_exists('../Private/controllers/' . ucwords($url[0]) . '.php')) {
-            // If exists, set as controller
-            $this->currentController = ucwords($url[0]);
-            // Unset 0 index
-            unset($url[0]);
+        if (!empty($url)) {
+            // Look in controllers folder for controller
+            if (file_exists('../Private/controllers/' . ucwords($url[0]) . '.php')) {
+                // If exists, set as controller
+                $this->currentController = ucwords($url[0]);
+                // Unset 0 index
+                unset($url[0]);
+            }
         }
 
         // Require the current controller
