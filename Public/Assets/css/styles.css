@@ -123,25 +123,20 @@ a.dropdown-toggle {
 
 /*footer*/
 footer {
-    background-color: antiquewhite;
+    background-color: bisque;
     text-align: center;
     width: 100%;
     height: 50px;
     padding-top: 10px;
-    padding-bottom: 10px;
     font-size: medium;
-}
-
-#footernav a {
-    display: inline-block;
 }
 
 #copy {
     padding-top: 10px;
 }
-
-#media-links {
-    margin-bottom: 10px;
+footer p{
+    margin-bottom: 0;
+    display: inline-block;
 }
 
 /*Social Media links in footer*/
@@ -151,7 +146,8 @@ footer {
     width: 30px;
     text-align: center;
     text-decoration: none;
-    margin: 5px 2px;
+    margin: 5px 2px 5px 2px;
+
 }
 
 .fa:hover {
