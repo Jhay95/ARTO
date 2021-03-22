@@ -1,6 +1,8 @@
 <?php
 /**
- * Base Controller, loads models and views
+ * Base Controller
+ * This file is extended by the applications controllers
+ * to load models and views
  */
 
 class Controller

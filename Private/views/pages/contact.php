@@ -16,11 +16,10 @@ require_once(INC_PATH . "header.php");
     </header>
 
     <!-- Stories-->
-    <main class="container">
+    <section class="container">
         <div class="row">
             <!--Featuring -->
-            <section class="col-sm-9">
-
+            <div class="col-sm-9">
                 <div class="row section-intro">
                     <div class="col-sm-2">
                         <h2>Contact</h2>
@@ -30,15 +29,9 @@ require_once(INC_PATH . "header.php");
                     </div>
                 </div>
 
-
-            </section>
-
-            <!--Side Bar-->
-            <?php
-            require_once(INC_PATH . "sidebar.php")
-            ?>
+            </div>
         </div>
-    </main>
+    </section>
 
 <?php
 require_once(INC_PATH . "footer.php");

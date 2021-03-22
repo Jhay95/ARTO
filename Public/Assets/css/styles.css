@@ -1,9 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
 
+/*General styling applicable*/
 body {
     font-family: 'Roboto', sans-serif;
 }
+
+p {
+    font-family: 'M', sans-serif;
+}
+
+span {
+    font-style: italic;
+    color: #c22b2b;
+}
+
 
 #bannerimage {
     width: 100%;
@@ -12,47 +24,51 @@ body {
     background-position-x: left;
 }
 
+
 section#pro-banner {
     background-color: bisque;
 }
 
-main {
-    padding-top: 10px;
-    margin-top: 10px;
+section {
+    padding: 30px 0 10px 0;
+    margin-bottom: 20px;
 }
+
+section.col-3 {
+    background-color: #e0c9cc;
+}
+
+.content {
+    margin: 20px 0 15px 0;
+    padding: 10px 0 10px 0;
+
+}
+.section-intro {
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
 
 .align-items-center {
     padding-top: 50px;
     padding-bottom: 70px;
 }
 
-.card {
-    width: 380px;
-    border: 0;
-    background-color: #d5c6c6;
-}
 
 form {
     padding-bottom: 20px;
     margin: 10px 10px 50px;
 }
 
+.card {
+    width: 380px;
+    border: 0;
+    background-color: #e7dcdf;
+}
+
 .card:first-child {
     margin-right: 30px;
-}
-
-section {
-    padding: 30px 0 10px 0;
-}
-
-section.col-3 {
-    background-color: bisque;
-}
-
-.section-intro {
-    padding-bottom: 10px;
-    margin-bottom: 15px;
-    font-weight: bold;
 }
 
 .card-title {
@@ -70,15 +86,6 @@ section.col-3 {
     font-weight: bold;
 }
 
-a {
-    text-decoration: none;
-    color: #444242;
-}
-
-a:hover {
-    color: #444242;
-}
-
 .card-body {
     padding-left: 0;
     padding-right: 0;
@@ -88,6 +95,15 @@ a:hover {
     font-weight: bold;
     font-size: x-small;
     line-height: 2px;
+}
+
+a {
+    text-decoration: none;
+    color: #444242;
+}
+
+a:hover {
+    color: #444242;
 }
 
 a.dropdown-toggle {
@@ -105,19 +121,30 @@ a.dropdown-toggle {
     text-align: justify;
 }
 
+/*footer*/
 footer {
     background-color: antiquewhite;
     text-align: center;
+    width: 100%;
     height: 50px;
     padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: medium;
 }
+
+#footernav a {
+    display: inline-block;
+}
+
 #copy {
     padding-top: 10px;
 }
-#footernav a {
-     display: inline-block;
- }
 
+#media-links {
+    margin-bottom: 10px;
+}
+
+/*Social Media links in footer*/
 .fa {
     padding: 10px;
     font-size: 15px;
@@ -141,22 +168,9 @@ footer {
     color: white;
 }
 
-.fa-google {
-    background: #dd4b39;
-    color: white;
-}
-
-.fa-linkedin {
-    background: #007bb5;
-    color: white;
-}
-
 .fa-youtube {
     background: #bb0000;
     color: white;
 }
 
-.fa-instagram {
-    background: #125688;
-    color: white;
-}
+

@@ -1,3 +1,4 @@
+<!------This page is where the writer makes updates to profile, Updates includes editing and deleting --------->
 <?php require_once(INC_PATH . 'header.php'); ?>
 
 <?php require_once(INC_PATH . 'navigation.php'); ?>
@@ -6,7 +7,9 @@
         <div class="container">
             <div class="justify-content-center">
                 <h2>Update Information</h2>
-                <form class="row g-3" action="<?= URL_ROOT ?>writers/edit/<?= $data['id'] ?>"
+                <br>
+                <!--------Form for Editing profile------->
+                <form class="row g-3" action="<?php echo URL_ROOT ;?>writers/edit/<?php echo $data['id'] ;?>"
                       method="post">
 
                     <div class="form-group col-md-6">
@@ -33,7 +36,6 @@
                         <span class="invalid-feedback"><?php echo $data['email_err']; ?></span>
                     </div>
 
-
                     <div class="form-group col-md-12">
                         <label for="email">About</label>
                         <textarea class="form-control" name="profile" id="profile"
@@ -56,7 +58,33 @@
 
                     <div class="form-group col-md-3">
                         <input type="submit" class="btn btn-primary" name="submit">
-                        <button class="btn btn-primary"><a href="<?= URL_ROOT ?>writers/index/<?= $data['id'] ?>">Cancel</a></button>
+                        <button class="btn btn-primary text-white"><a href="<?php echo URL_ROOT; ?>writers/index/<?php echo $data['id'] ;?>">Cancel</a></button>
+                    </div>
+                    <!--------Prompt for deactivating profile------->
+                    <div  class="form-group col-md-3 ml.auto">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            Deactivate Profile
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Are you sure you want to delete this profile?</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Selecting yes will remove this profile along with any information created from our system. Stories told will no longer be available to the public.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-primary"><a href="<?php echo URL_ROOT; ?>writers/delete/<?php echo $data['id'] ;?>">Yes! Continue</a></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>

@@ -23,7 +23,7 @@ writer_profile TEXT,
 writer_city VARCHAR(64) , 
 writer_state VARCHAR(64) , 
 writer_username VARCHAR(32),
-writer_password VARCHAR(16) NOT NULL ,
+writer_password VARCHAR(128) NOT NULL ,
 writer_reg_date DATETIME DEFAULT NOW(),
 writer_modify_date DATETIME DEFAULT NOW()
 )
@@ -37,11 +37,12 @@ writer_id INT UNSIGNED NOT NULL,
 story_title VARCHAR(128) NOT NULL,
 story_slug VARCHAR(128) NOT NULL UNIQUE ,
 story_body MEDIUMTEXT,
-story_category SET('War', 'Family', 'Tradition') ,
+story_category SET('War', 'Family', 'Tradition','Politics') ,
+story_tag VARCHAR(32) ,
 story_location VARCHAR(64) ,
 story_pub_date DATETIME NOT NULL DEFAULT NOW(),
 story_modify_date DATETIME DEFAULT NOW(),
-CONSTRAINT fk_writerid FOREIGN KEY (writer_id) REFERENCES writers(writer_id)                      
+CONSTRAINT fk_writerid FOREIGN KEY (writer_id) REFERENCES writers(writer_id) ON DELETE CASCADE                    
 )
 SQL;
 
@@ -49,12 +50,14 @@ SQL;
 $psql = <<<SQL
 CREATE TABLE photos (
 photo_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-upload_id INT UNSIGNED NOT NULL,
-photo_title VARCHAR(128) NOT NULL,
-photo_modify_date DATETIME NOT NULL DEFAULT NOW(),
-CONSTRAINT fk_uploadid FOREIGN KEY (upload_id) REFERENCES writers(writer_id)                      
+upload_id INT UNSIGNED ,
+photo_title VARCHAR(128),
+photo_size VARCHAR(16),
+photo_modify_date DATETIME DEFAULT NOW(),
+CONSTRAINT fk_uploadid FOREIGN KEY (upload_id) REFERENCES writers(writer_id) ON DELETE CASCADE                 
 )
 SQL;
+
 if ($conn->query($wsql) === TRUE) {
     echo "Writers table successfully created.\n";
 } else die('Connection error' . $conn->error);
@@ -64,7 +67,7 @@ if ($conn->query($ssql) === TRUE) {
 } else die('Connection error' . $conn->error);
 
 if ($conn->query($psql) === TRUE) {
-    echo "Story table successfully created.\n";
+    echo "Photo table successfully created.\n";
 } else die('Connection error' . $conn->error);
 
 $conn->close();

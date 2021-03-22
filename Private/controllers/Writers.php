@@ -1,33 +1,47 @@
 <?php
-
+/**
+ * Class Writers Controller
+ * This controller extends the base controller in /Private/modules
+ * it loads the models that interacts with the database, updates the data that would be displayed
+ * to the user and loads the view(page) with the corresponding data
+ *
+ * This controller is responsible for interacting with the writers and their pages
+ * and can only be accessed during a logged in session as a writer with unique identity
+ *
+ */
 
 class Writers extends Controller
 {
     private $writerModel;
-    /**
-     * @var mixed
-     */
     private $storyModel;
 
     public function __construct()
     {
+        if (!loggedin()) {
+            header('location' . URL_ROOT . 'pages');
+        }
+
         $this->writerModel = $this->model('Writer');
         $this->storyModel = $this->model('Story');
 
     }
 
+    // Loads the writers personal page with
+    //writer's information and photo, writer's story
     public function index($id){
         if (!loggedin()) {
-            redirect('pages/index');
+            header('location: ' . URL_ROOT . 'pages/index');
         }
 
         $writer = $this->writerModel->getWriterById($id);
         $stories = $this->storyModel->getShortStoriesbyWriters($id);
+        $photo = $this->writerModel->findPhoto($id);
 
         //Set Data
         $data = [
             'writer' => $writer,
-            'stories' => $stories
+            'stories' => $stories,
+            'photo'  => $photo
         ];
 
         // Load homepage/index view
@@ -35,7 +49,7 @@ class Writers extends Controller
 
     }
 
-
+    // Register a new writer
     public function register()
     {
         // Check if POST
@@ -79,6 +93,9 @@ class Writers extends Controller
             if (empty($data['name_err']) && empty($data['email_err']) && empty($data['password_err'])) {
                 // SUCCESS - Proceed to insert
 
+                // Hash Password
+                $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
                 //Execute
                 $registered = $this->writerModel->register($data);
 
@@ -87,6 +104,7 @@ class Writers extends Controller
 
                     // Create Session
                     $this->createSession($writer);
+
                 } else {
                     $this->view('pages/register', $data);
                 }
@@ -115,11 +133,9 @@ class Writers extends Controller
         }
     }
 
+    // Validate login for a writer
     public function login()
     {
-        if(loggedin()){
-            redirect('writers/home');
-        }
 
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -182,6 +198,7 @@ class Writers extends Controller
         }
     }
 
+    // Update a writer's profile
     public function edit($id) {
         // Check for POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -267,6 +284,95 @@ class Writers extends Controller
         }
     }
 
+    // Delete a writer's profile
+    public function delete($id)
+    {
+        // Check for Post Request
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+            //Execute
+            $deleted = $this->writerModel->delete($id);
+
+            if ($deleted) {
+                $this->logout();
+            } else
+                die('Something went wrong!!');
+        }
+    }
+
+    // Upload Profile photo for a writer
+    public function upload($id) {
+        // Uploads files
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') { // if save button on the form is clicked
+
+            $data = [
+                'id' => $id,
+                'file' => '',
+                'size' => '',
+                'file_err' => ''
+            ];
+
+            if (empty($_FILES['profile'])){
+                $data['file_err'] = 'File is empty';
+            }
+            // name of the uploaded file
+            $data['file'] = $_FILES['profile']['name'];
+
+            // destination of the file on the server
+            $destination = $_SERVER['DOCUMENT_ROOT']. '/ARTO/Public/Assets/images/uploads/profiles/' . $data['file'];
+
+            // get the file extension
+            $extension = pathinfo($data['file'], PATHINFO_EXTENSION);
+
+            // the physical file on a temporary uploads directory on the server
+            $file = $_FILES['profile']['tmp_name'];
+            $data['size'] = $_FILES['profile']['size'];
+
+            if (!in_array($extension, ['png', 'jpeg', 'jpg'])) {
+                $data['file_err'] = "You file extension must be .png, .jpeg or .jpg";
+            } elseif ($_FILES['profile']['size'] > 6000000) { // file shouldn't be larger than 6Megabyte
+                $data['file_err'] = "File too large!";
+            }
+
+            if (empty($data['file_err'])) {
+                // move the uploaded (temporary) file to the specified destination
+                if (move_uploaded_file($file, $destination)) {
+
+                    //check if any profile pic for user exist
+                    $exists = $this->writerModel->findPhoto($id);
+
+                    if ($exists) {
+                        $uploaded = $this->writerModel->editPhoto($data);
+                    } else {
+                        $uploaded = $this->writerModel->uploadPhoto($data);
+                    }
+
+                    if ($uploaded) {
+                        header('location:' . URL_ROOT . 'writers/index/'. $id);
+                    } else {
+                        $data['file_err'] = "Failed to upload file.";
+                    }
+
+                    $this->view('writers/photo_upload', $data);
+
+                } else {
+                    $this->view('writers/photo_upload', $data);
+                }
+            } else {
+                $this->view('writers/photo_upload', $data);
+            }
+        } else {
+
+            $data = [
+                'id' => $id,
+
+            ];
+
+            $this->view('writers/photo_upload', $data);
+        }
+    }
+
+    // Create session for a logged in user
     private function createSession($writer)
     {
         $_SESSION['id'] = $writer->writer_id;
@@ -281,8 +387,8 @@ class Writers extends Controller
         unset($_SESSION['email']);
         unset($_SESSION['user']);
         session_destroy();
-        redirect('pages/login');
-    }
+        header('location: ' . URL_ROOT . 'pages/login');
 
+    }
 
 }

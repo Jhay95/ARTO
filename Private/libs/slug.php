@@ -1,5 +1,10 @@
 <?php
 
+/** This function takes a string of text and returns a '-' separated text
+ * @param $text
+ * @return array|string
+ */
+
 function slug($text): array|string
 {
 
@@ -22,6 +27,5 @@ function slug($text): array|string
     {
         return 'n-a';
     }
-
     return $text;
 }

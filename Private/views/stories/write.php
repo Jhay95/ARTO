@@ -1,10 +1,10 @@
-<!------This is where the write creates her stories from scratch---->
+<!------This is where the write creates stories from scratch---->
 <?php require_once(INC_PATH . 'header.php') ?>
 <?php require_once(INC_PATH . 'navigation.php') ?>
 
 <section class="container">
     <div class="align-items-center">
-        <form action="<?= URL_ROOT ?>stories/new/<?= $_SESSION['id']?>" method="post">
+        <form action="<?php echo URL_ROOT ;?>stories/new/<?php echo $_SESSION['id'];?>" method="post">
             <div class="row g-3">
                 <div class="form-group col-md-12">
                     <label for="title">Title</label>
@@ -22,6 +22,7 @@
                         <option value="Tradition">Tradition</option>
                         <option value="War">War</option>
                         <option value="Family">Family</option>
+                        <option value="Politics">Politics</option>
                     </select>
                 </div>
 
@@ -37,10 +38,9 @@
 
                 <div class="form-group col-md-3">
                     <input type="submit" class="btn btn-primary" name="submit">
-                    <button class="btn btn-primary"><a href="<?= URL_ROOT ?>writers/index/<?= $_SESSION['id'] ?>">Cancel</a></button>
+                    <button class="btn btn-primary"><a href="<?php echo URL_ROOT ;?>writers/index/<?php echo $_SESSION['id'] ;?>">Cancel</a></button>
                 </div>
             </div>
-
         </form>
     </div>
 </section>

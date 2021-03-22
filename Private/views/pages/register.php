@@ -16,10 +16,10 @@ require_once(INC_PATH . "header.php");
     </header>
 
     <!-- Stories-->
-    <main class="container">
+    <section class="container">
         <div class="row">
             <!--Featuring -->
-            <section class="col-sm-9">
+            <div class="col-sm-9">
 
                 <div class="row section-intro">
                     <div class="col-sm-3">
@@ -70,14 +70,14 @@ require_once(INC_PATH . "header.php");
                         </div>
                     </form>
                 </div>
-            </section>
+            </div>
 
             <!--Side Bar-->
             <?php
-            require_once(INC_PATH . "sidebar.php")
+            require_once(INC_PATH . "sidebar.php");
             ?>
         </div>
-    </main>
+    </section>
 
 <?php
 require_once(INC_PATH . "footer.php");

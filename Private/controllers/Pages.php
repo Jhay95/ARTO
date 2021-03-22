@@ -1,24 +1,30 @@
 <?php
-
+/**
+ * Class Pages Controller
+ * This controller extends the base controller in /Private/modules
+ * it loads the models that interacts with the database, updates the data that would be displayed
+ * to the user and loads the view(page) with the corresponding data
+ *
+ * This controller is responsible for loading default pages that doesn't require any access control
+ *
+ */
 
 class Pages extends Controller
 {
 
-    /**
-     * @var mixed
-     */
     private $storyModel;
+    private $stories;
 
     public function __construct()
     {
         $this->storyModel = $this->model('Story');
+        $this->stories = $this->storyModel->getShortStories();
     }
 
-    // Load Homepage
+    // Loads Homepage with 4 most stories
     public function home()
     {
-       $stories = $this->storyModel->getShortStories();
-       $recent = array_slice($stories, 0, 4);
+        $recent = array_slice($this->stories , 0, 4);
         //Set Data
         $data = [
             'stories' => $recent
@@ -28,6 +34,7 @@ class Pages extends Controller
         $this->view('pages/index', $data);
     }
 
+    // Loads About us page
     public function about()
     {
         //Set Data
@@ -39,6 +46,7 @@ class Pages extends Controller
         $this->view('pages/about', $data);
     }
 
+    // Loads Registration page
     public function register()
     {
         //Set Data
@@ -48,6 +56,7 @@ class Pages extends Controller
         $this->view('pages/register', $data);
     }
 
+    // Loads login page
     public function login()
     {
         //Set Data
@@ -57,17 +66,18 @@ class Pages extends Controller
         $this->view('pages/login', $data);
     }
 
+    // Loads page that displays all stories
     public function stories()
     {
-        $stories = $this->storyModel->getShortStories();
         //Set Data
         $data = [
-            'stories' => $stories
+            'stories' => $this->stories
         ];
         // Load about view
         $this->view('pages/stories', $data);
     }
 
+    // Loads Contact page
     public function contact()
     {
         //Set Data
@@ -77,6 +87,7 @@ class Pages extends Controller
         $this->view('pages/contact', $data);
     }
 
+    // Loads a selected story's page
     public function read($id) {
         $story = $this->storyModel->getFullStory($id);
 
@@ -87,5 +98,10 @@ class Pages extends Controller
 
         // Load homepage/index view
         $this->view('stories/index', $data);
+    }
+
+
+    public function search($data) {
+
     }
 }
