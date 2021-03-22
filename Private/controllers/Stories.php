@@ -20,7 +20,7 @@ class Stories extends Controller
     public function __construct()
     {
         if (!loggedin()) {
-            header('location' . URL_ROOT . 'pages');
+            header('location:' . URL_ROOT . 'pages/error');
         }
 
         $this->storyModel = $this->model('Story');
@@ -178,11 +178,5 @@ class Stories extends Controller
             $this->view('stories/delete', $data);
         }
     }
-
-
-
-
-
-
 
 }
