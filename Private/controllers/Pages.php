@@ -100,6 +100,15 @@ class Pages extends Controller
         $this->view('stories/index', $data);
     }
 
+    public function error() {
+        //Set Data
+        $data = [
+            'error' => ''
+        ];
+
+        // Load homepage/index view
+        $this->view('pages/error', $data);
+    }
 
     public function search($data) {
 
