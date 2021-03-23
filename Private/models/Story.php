@@ -84,11 +84,12 @@ class Story
     // Get snippets of all stories from Database
     public function getShortStories(): array
     {
-        $this->db->query('SELECT s.story_id, s.story_title, s.story_body, 
+        $this->db->query('SELECT s.story_id, s.story_title, s.story_body, p.photo_title,
                                 DATE(story_pub_date) as pub_date, LEFT(story_body, 280) AS snippet, 
                                 w.writer_fname,w.writer_lname, w.writer_city, w.writer_state 
                                 FROM stories s 
                                 JOIN writers w on w.writer_id = s.writer_id
+                                LEFT JOIN photos p on w.writer_id = p.upload_id
                                 ORDER BY pub_date DESC');
         return $this->db->resultSet();
     }
@@ -96,10 +97,11 @@ class Story
     // Get full story of a selection from Database
     public function getFullStory($id) {
         $this->db->query('SELECT s.*, w.writer_fname,w.writer_lname, w.writer_profile, w.writer_city, w.writer_state, 
-                              DATE(story_pub_date) as pub_date,
+                              DATE(story_pub_date) as pub_date, 
                               DATE(story_modify_date) as mod_date 
                               FROM stories s 
                               JOIN writers w on w.writer_id = s.writer_id 
+                              LEFT JOIN photos p on w.writer_id = p.upload_id
                               WHERE story_id = :id');
         $this->db->bind(':id', $id);
         return $this->db->single();
