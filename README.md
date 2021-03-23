@@ -28,14 +28,19 @@ directory. This directs the whole webpage through index.php. The 3rd one is in t
 This restricts access to the public.
 #### Project Folder
 * ##### Private
-    * config/
-    * controllers/
-    * libs/
-    * data/
-    * models/
-    * modules/
-    * views/
-    * test/
+    * config/ - This has the configuration file where all constants and environment variables are defined
+    * controllers/ - Contains the controllers that is being routed by the Core class. They are the: 'Pages'
+      which routes the default public pages, 'Writers' which routes access control for login sessions and
+      'Stories' which routes access to stories. The controllers interacts with the models to get database 
+      information and passes it on to the designated view page.
+    * libs/ - Contains helper functions for carrying out other operations
+    * data/ - Contains database set up file
+    * models/ - Contains the 'Writer' and 'Story' models that interacts with the database
+    * modules/ - Contains base classes that other class extends from. The controllers in controllers/
+      extends the controller class in this directory, and the models extends the Database class.
+    * views/ - This contains all the html and styles the user will be seeing. The view pages receives data 
+      from the controllers and displays.
+    * test/ - This has the test files for asserting the security and behavior of the application.
     
 
 * ##### Public
