@@ -44,8 +44,9 @@ This restricts access to the public.
     
 
 * ##### Public
-    * assets/
-
+    * assets/ - This contains the image,stylesheet and javascript files required to enhance the pages aesthetic. 
+    * index.php - This is where the Core class is instantiated to load the application documents.
+  
 #### To assess this application
 * Change **define('URL_ROOT', '')** in the config/config.php file variables
 * Change the **RewriteBase** path in the .htaccess file in the Public directory to your project root.
