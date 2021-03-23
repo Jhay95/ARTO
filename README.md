@@ -42,11 +42,12 @@ This restricts access to the public.
     * views/ - This contains all the html and styles the user will be seeing. The view pages receives data 
       from the controllers and displays.
     * test/ - This has the test files for asserting the security and behavior of the application.
-    
+    * initialize.php - The file requires all the files and classes needed to execute an event 
 
 * ##### Public
     * assets/ - This contains the image,stylesheet and javascript files required to enhance the pages aesthetic. 
-    * index.php - This is where the Core class in the modules/ directory is instantiated to load the application documents.
+    * index.php - This is where the Core class in the modules/ directory is instantiated to load the application documents
+      and requires the initialize.php file in Private directory.
   
 #### To assess this application
 * Change **define('URL_ROOT', '')** in the config/config.php file variables
