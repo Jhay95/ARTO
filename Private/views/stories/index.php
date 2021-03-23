@@ -75,7 +75,12 @@ require_once(INC_PATH . "navigation.php");
                 <div>
                     <!----- Profile Pic---->
                     <div class="pro">
-                        <img src="http://via.placeholder.com/130x130" alt="">
+                        <?php if (empty($data['story']->photo_title)) : ?>
+                            <img src="<?php echo URL_ROOT; ?>Assets/images/team.png" alt="" width="150px" height="150px">
+                        <?php else : ?>
+                            <img src="<?php echo URL_ROOT; ?>Assets/images/uploads/profiles/<?php echo $data['story']->photo_title; ?>"
+                                 alt="" width="150px" height="150px">
+                        <?php endif; ?>
                     </div>
 
                     <!----- Profile Data---->
