@@ -37,7 +37,8 @@ This restricts access to the public.
     * data/ - Contains database set up file
     * models/ - Contains the 'Writer' and 'Story' models that interacts with the database
     * modules/ - Contains base classes that other class extends from. The controllers in controllers/
-      extends the controller class in this directory, and the models extends the Database class.
+      extends the controller class in this directory, and the models extends the Database class. The Core class
+      is instantiated by the index.ph file in the Public directory.
     * views/ - This contains all the html and styles the user will be seeing. The view pages receives data 
       from the controllers and displays.
     * test/ - This has the test files for asserting the security and behavior of the application.
@@ -45,7 +46,7 @@ This restricts access to the public.
 
 * ##### Public
     * assets/ - This contains the image,stylesheet and javascript files required to enhance the pages aesthetic. 
-    * index.php - This is where the Core class is instantiated to load the application documents.
+    * index.php - This is where the Core class in the modules/ directory is instantiated to load the application documents.
   
 #### To assess this application
 * Change **define('URL_ROOT', '')** in the config/config.php file variables
