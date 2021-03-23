@@ -110,7 +110,4 @@ class Pages extends Controller
         $this->view('pages/error', $data);
     }
 
-    public function search($data) {
-
-    }
 }
