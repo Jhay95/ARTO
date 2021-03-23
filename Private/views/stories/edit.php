@@ -34,12 +34,12 @@
 
                 <div class="form-group col-md-4">
                     <label for="tags">tags</label>
-                    <input type="text" name="tag" class="form-control" value="<?php /*echo $data['story_tag'];*/?>">
+                    <input type="text" name="tag" class="form-control" value="<?php echo $data['tag'];?>">
                 </div>
 
                 <div class="form-group col-md-3">
                     <input type="submit" class="btn btn-primary" name="submit">
-                    <button class="btn btn-primary"><a href="<?php echo URL_ROOT ;?>writers/index/<?php echo $_SESSION['id'] ;?>">Cancel</a></button>
+                    <button class="btn btn-primary"><a href="<?php echo URL_ROOT ;?>pages/read/<?php echo $data['story_id']; ?>">Cancel</a></button>
                 </div>
             </div>
         </form>
