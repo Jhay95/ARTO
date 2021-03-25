@@ -56,7 +56,7 @@ require_once(INC_PATH . "navigation.php");
 
                 <div class="row">
                     <div class="col-md-10">
-                        <p class="story-body"><?php echo $data['story']->story_body; ?>
+                        <p class="story-body" style="white-space: pre-wrap;"><?php echo $data['story']->story_body; ?>
                         </p>
                     </div>
                     <div class="col-md-2">
