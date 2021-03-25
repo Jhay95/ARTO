@@ -39,7 +39,7 @@ require_once(INC_PATH . "navigation.php");
                                         <div class="card-time">
                                             <p>
                                                 <?php if (empty($story->mod_date)): ?>
-                                                    <span class="text-muted">created at <?php echo $story->pub_date; ?></span>
+                                                    <span class="text-muted">published at <?php echo $story->pub_date; ?></span>
                                                 <?php else: ?>
                                                     <span class="text-muted">modified at <?php echo $story->mod_date; ?> </span>
                                                 <?php endif; ?>

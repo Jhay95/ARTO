@@ -24,7 +24,7 @@ require_once(INC_PATH . "navigation.php");
                     <div class="col-md-9">
                         <p>
                             <?php if (empty($data['story']->mod_date)): ?>
-                                <span class="text-muted">created at <?php echo $data['story']->pub_date; ?></span>
+                                <span class="text-muted">published at <?php echo $data['story']->pub_date; ?></span>
                             <?php else: ?>
                                 <span class="text-muted">modified at <?php echo $data['story']->mod_date; ?> </span>
                             <?php endif; ?>
